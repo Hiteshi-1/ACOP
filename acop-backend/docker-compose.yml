@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  acop-backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://acop_user:acop_pass@postgres:5432/acop_db
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - K8S_MODE=${K8S_MODE:-mock}
+    depends_on:
+      - postgres
+    volumes:
+      - ./chroma_store:/app/chroma_store
+      - ./model_artifacts:/app/model_artifacts
+      - ./logs:/app/logs
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_USER=acop_user
+      - POSTGRES_PASSWORD=acop_pass
+      - POSTGRES_DB=acop_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - acop_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  acop_pg_data:

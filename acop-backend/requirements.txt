@@ -1,0 +1,44 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.4
+pydantic-settings==2.3.4
+sqlalchemy==2.0.31
+psycopg2-binary==2.9.9
+alembic==1.13.2
+python-dotenv==1.0.1
+python-multipart==0.0.9
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+
+# ML
+numpy==1.26.4
+pandas==2.2.2
+scikit-learn==1.5.1
+xgboost==2.1.0
+tensorflow==2.16.2
+joblib==1.4.2
+
+# RAG / Vector DB (uses ChromaDB's built-in ONNX embedder -- no torch/transformers needed)
+chromadb==0.5.3
+onnxruntime==1.18.1
+
+# Kubernetes
+kubernetes==30.1.0
+
+# LLM -- Gemini is the default/free provider; Anthropic is optional (LLM_PROVIDER=anthropic)
+google-genai==1.5.0
+anthropic==0.28.1
+httpx==0.28.1
+
+# WebSockets & async
+websockets==13.1
+aiofiles==24.1.0
+
+# Utilities
+tenacity==8.5.0
+loguru==0.7.2
+apscheduler==3.10.4
+
+# Testing
+pytest==8.2.2
+pytest-asyncio==0.23.7
